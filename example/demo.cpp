@@ -1,7 +1,7 @@
 #include <CeresLocalizer.h>
 #include <DebugVisualizer.h>
 #include "LandmarkFinder.h"
-
+#include "opencv2/imgcodecs/legacy/constants_c.h"
 using namespace stargazer;
 using namespace std;
 

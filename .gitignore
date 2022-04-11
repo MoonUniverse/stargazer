@@ -28,3 +28,4 @@
 *.app
 CMakeLists.txt.user
 doc_compiled/
+build/

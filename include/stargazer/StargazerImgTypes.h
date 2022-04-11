@@ -20,7 +20,7 @@
 
 #include <vector>
 #include "StargazerTypes.h"
-#include "opencv/cv.h"
+#include "opencv2/opencv.hpp"
 
 namespace stargazer {
 
