@@ -39,7 +39,7 @@ CeresLocalizer::CeresLocalizer(const std::string& cfgfile, bool estimate_2d_pose
         }
     }
 
-    is_initialized = false;
+    is_initialized = true;
 }
 
 void CeresLocalizer::UpdatePose(std::vector<ImgLandmark>& img_landmarks, float dt) {

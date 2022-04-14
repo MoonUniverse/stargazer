@@ -35,8 +35,12 @@ template <typename T>
  * @param y_world y value of ouput point in world coordinates
  * @param z_world z value of ouput point in world coordinates
  */
-void transformLandMarkToWorld(const T& x_landmark, const T& y_landmark, const T* const landmark_pose, T* const x_world,
-                              T* const y_world, T* const z_world) {
+void transformLandMarkToWorld(const T& x_landmark,
+                              const T& y_landmark,
+                              const T* const landmark_pose,
+                              T* const x_world,
+                              T* const y_world,
+                              T* const z_world) {
     // Create point in Landmark coordinates
     const T point_landmark[3] = {x_landmark, y_landmark, T(0.0)};
 
@@ -48,6 +52,9 @@ void transformLandMarkToWorld(const T& x_landmark, const T& y_landmark, const T*
     angleAxisLM[2] = landmark_pose[(int)POSE::Rz];
 
     ceres::AngleAxisRotatePoint(&angleAxisLM[0], &point_landmark[0], &point_world[0]);
+
+    std::cout << "pt_start"
+              << " " << point_world[0] << " " << point_world[1] << " " << point_world[2] << " " << std::endl;
 
     // lm_pose[0,1,2] are the translation.
     point_world[0] += landmark_pose[(int)POSE::X];
@@ -72,8 +79,13 @@ template <typename T>
  * @param x_image x value of ouput point in image coordinates
  * @param y_image y value of ouput point in image coordinates
  */
-void transformWorldToImg(const T& x_world, const T& y_world, const T& z_world, const T* const camera_pose,
-                         const T* const camera_intrinsics, T* const x_image, T* const y_image) {
+void transformWorldToImg(const T& x_world,
+                         const T& y_world,
+                         const T& z_world,
+                         const T* const camera_pose,
+                         const T* const camera_intrinsics,
+                         T* const x_image,
+                         T* const y_image) {
     // Create point in wolrd coordinates
     const T p_world[3] = {x_world, y_world, z_world};
 
@@ -122,8 +134,12 @@ template <typename T>
  * @param x_image x value of ouput point in image coordinates
  * @param y_image y value of ouput point in image coordinates
  */
-void transformLandMarkToImage(const T& x_landmark, const T& y_landmark, const T* const landmark_pose,
-                              const T* const camera_pose, const T* const camera_intrinsics, T* const x_image,
+void transformLandMarkToImage(const T& x_landmark,
+                              const T& y_landmark,
+                              const T* const landmark_pose,
+                              const T* const camera_pose,
+                              const T* const camera_intrinsics,
+                              T* const x_image,
                               T* const y_image) {
     T x_world, y_world, z_world;
     transformLandMarkToWorld(x_landmark, y_landmark, landmark_pose, &x_world, &y_world, &z_world);

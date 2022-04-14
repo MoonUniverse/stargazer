@@ -107,14 +107,12 @@ struct Landmark {
      */
     Landmark(int ID) : id(ID), points(getLandmarkPoints(ID)){};
 
-    int id; /**< The landmarks id */
-    std::array<double, (int)POSE::N_PARAMS> pose = {
-        {0., 0., 0., 0., 0., 0.}}; /**< The landmarks pose */
-    std::vector<Point> points; /**< Vector of landmark points. The first three are the corners */
-    static constexpr int kGridCount = 4; /**< Defines how many rows and columns the landmark has */
-    static constexpr double kGridDistance =
-        0.08; /**< Defines the distance between two landmark LEDs in meters. This is important for
-                 esimating the scale. */
+    int id;                                                                    /**< The landmarks id */
+    std::array<double, (int)POSE::N_PARAMS> pose = {{0., 0., 0., 0., 0., 0.}}; /**< The landmarks pose */
+    std::vector<Point> points;                    /**< Vector of landmark points. The first three are the corners */
+    static constexpr int kGridCount = 4;          /**< Defines how many rows and columns the landmark has */
+    static constexpr double kGridDistance = 0.04; /**< Defines the distance between two landmark LEDs in meters. This is
+                                                     important for esimating the scale. */
 };
 
 /**
@@ -148,9 +146,9 @@ inline std::vector<Point> getLandmarkPoints(int ID) {
     for (int y = 0; y < Landmark::kGridCount; y++) // For every column
     {
         /* StarLandmark IDs are coded:
-        * the binary values ar coded:  x steps are binary shifts within 4 bit blocks
-        *                              y steps are binary shifts of 4 bit blocks
-        */
+         * the binary values ar coded:  x steps are binary shifts within 4 bit blocks
+         *                              y steps are binary shifts of 4 bit blocks
+         */
 
         // Modulo 16^(i+1) tells us how much this row contributed to the ID
         col = (ID % pow(pow(Landmark::kGridCount, 2), y + 1));
@@ -158,7 +156,7 @@ inline std::vector<Point> getLandmarkPoints(int ID) {
         ID -= col;
         // Convert to binary
         for (int x = 0; x < Landmark::kGridCount; x++) { // For every row
-            if (col % 2 != 0) { // Modulo 2 effectively converts the number to binary.
+            if (col % 2 != 0) {                          // Modulo 2 effectively converts the number to binary.
                 // If this returns 1, we have a point
                 // Point found
                 // int id = y * Landmark::kGridCount + x;

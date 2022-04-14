@@ -85,7 +85,8 @@ inline void readConfig(const std::string& cfgfile, camera_params_t& camera_intri
  * @param camera_intrinsics
  * @param landmarks
  */
-inline void writeConfig(std::string cfgfile, const camera_params_t& camera_intrinsics,
+inline void writeConfig(std::string cfgfile,
+                        const camera_params_t& camera_intrinsics,
                         const landmark_map_t& landmarks) {
     std::ofstream fout(cfgfile);
 
